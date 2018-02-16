@@ -1,22 +1,22 @@
 global.Promise         = require('bluebird');
 
-var webpack            = require('webpack');
-var path               = require('path');
-var ExtractTextPlugin  = require('extract-text-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack            = require('webpack');
+const path               = require('path');
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var publicPath         = 'http://localhost:8050/public/assets';
-var cssName            = 'styles.css';
-var jsName             = 'bundle.js';
+const publicPath         = 'http://localhost:8050/public/assets';
+const cssName            = 'styles.css';
+const jsName             = 'bundle.js';
 
-var plugins = [
+const plugins = [
   new webpack.DefinePlugin({
     'process.env': {
       BROWSER:  JSON.stringify(true),
       NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
     }
   }),
-  new ExtractTextPlugin(cssName)
+  new ExtractTextPlugin(cssName, { allChunks: true })
 ];
 
 if (process.env.NODE_ENV === 'production') {
@@ -52,8 +52,12 @@ module.exports = {
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
       },
       {
+        test: /\.sass$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-hot-loader!css-loader!postcss-loader!sass-loader')
+      },
+      {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!less-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-hot-loader!css-loader!postcss-loader!less-loader')
       },
       { test: /\.gif$/, loader: 'url-loader?limit=10000&mimetype=image/gif' },
       { test: /\.jpg$/, loader: 'url-loader?limit=10000&mimetype=image/jpg' },
@@ -69,6 +73,8 @@ module.exports = {
   },
   devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : null,
   devServer: {
-    headers: { 'Access-Control-Allow-Origin': '*' }
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    hot: true,
+    inline: true
   }
 };

@@ -25,7 +25,7 @@ function renderHTML(componentHTML) {
       <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Реактивная игра Жизнь</title>
+          <title>Стартовый набор</title>
           <link rel="stylesheet" href="${assetUrl}styles.css">
       </head>
       <body>

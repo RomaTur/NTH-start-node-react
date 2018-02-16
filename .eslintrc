@@ -138,11 +138,6 @@
         "no-new-require": 2,
 
         // Stylistic
-        "array-bracket-spacing": [2, "never", {
-            "singleValue": true,
-            "objectsInArrays": true,
-            "arraysInArrays": true
-        }],
         "newline-after-var": [1, "always"],
         "brace-style": [2, "1tbs"],
         "camelcase": [2, { "properties": "always" }],
@@ -174,7 +169,6 @@
         "one-var": [2, "never"],
         "padded-blocks": [2, "never"],
         "quotes": [1, "single", "avoid-escape"],
-        "semi-spacing": [2, { "before": false, "after": true }],
         "semi": [2, "always"],
         "keyword-spacing": 2,
         "space-before-blocks": 2,

@@ -1,6 +1,6 @@
 # Стартовый набор (Express + React)
 
-Стартовый проект для приложения на Node.js и React с рендерингом на стороне сервера
+Стартовый проект для приложения на Node.js и React
 
 ---
 
@@ -35,8 +35,8 @@ npm start
 ## Сборка и запуск
 
 ``` bash
-build
-server
+npm run build
+npm run server
 ```
 
 > открой в браузере [http://localhost:3000](http://localhost:3000)

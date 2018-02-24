@@ -1,4 +1,7 @@
-require('babel-core/register');
-['.css', '.less', '.sass', '.ttf', '.woff', '.woff2'].forEach((ext) => require.extensions[ext] = () => {});
-require('babel-polyfill');
-require('server.js');
+const express = require('express')
+const path = require('path')
+const app = express()
+
+app.use(express.static(path.join(__dirname, 'build')))
+
+module.exports = app
